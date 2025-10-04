@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-import 'package:device_preview/device_preview.dart';
+
 
 // --- Step 1: Replace with your credentials from Zego Cloud Console ---
 // Get your AppID and AppSign from ZegoCloud Console
@@ -12,12 +11,8 @@ const int appID = 1215738257; // <<< YOUR_APP_ID
 const String appSign = '0d1f6a260cccf266b337f4f46daf676b0d65eba5bd53e73f4c9f59958ac6df56'; // <<< YOUR_APP_SIGN (or Server Secret)
 
 void main() {
-  if(kIsWeb){
-    runApp(DevicePreview(builder: (context) => MyApp()));
-  }
-  else{
+ 
     runApp(const MyApp());
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -185,13 +180,15 @@ class CallPage extends StatelessWidget {
       userID: userID,
       userName: userName,
       callID: callID,
+      config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall(),
+    
       // Configure the call for a 1-on-1 video call.
-      config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
-        ..onOnlySelfInRoom = (context) {
-          // This function is called when a user is the only one in the room.
-          // You can navigate them back to the home page.
-          Navigator.of(context).pop();
-        },
+      // config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
+      //   ..onOnlySelfInRoom = (context) {
+      //     // This function is called when a user is the only one in the room.
+      //     // You can navigate them back to the home page.
+      //     Navigator.of(context).pop();
+      //   },
     );
   }
 }
