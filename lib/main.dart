@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
-
 // --- Step 1: Replace with your credentials from Zego Cloud Console ---
 // Get your AppID and AppSign from ZegoCloud Console
 // 1. Go to https://console.zegocloud.com/
 // 2. Create a project, then you can find your AppID and AppSign.
 // For the AppSign, you can use your Server Secret.
 const int appID = 1215738257; // <<< YOUR_APP_ID
-const String appSign = '0d1f6a260cccf266b337f4f46daf676b0d65eba5bd53e73f4c9f59958ac6df56'; // <<< YOUR_APP_SIGN (or Server Secret)
+const String appSign =
+    '0d1f6a260cccf266b337f4f46daf676b0d65eba5bd53e73f4c9f59958ac6df56'; // <<< YOUR_APP_SIGN (or Server Secret)
 
 void main() {
- 
-    runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -57,14 +56,14 @@ class _HomePageState extends State<HomePage> {
 
   void _joinCall() {
     if (appID == 0 || appSign == 'appid') {
-       _showErrorDialog('ERROR: Please add your appID and appSign in main.dart');
-       return;
+      _showErrorDialog('ERRORS: Please add your appID and appSign in main.dart');
+      return;
     }
     if (callIdController.text.isEmpty || userIdController.text.isEmpty) {
       _showErrorDialog('Call ID and User ID cannot be empty.');
       return;
     }
-    
+
     // Navigate to the CallPage when the join button is pressed.
     Navigator.push(
       context,
@@ -76,21 +75,21 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  
+
   void _showErrorDialog(String message) {
-     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Error'),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -106,7 +105,9 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(24.0),
           child: Card(
             elevation: 8,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
             color: Colors.blueGrey[800],
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -123,7 +124,9 @@ class _HomePageState extends State<HomePage> {
                     controller: userIdController,
                     decoration: InputDecoration(
                       labelText: 'Your User ID',
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -133,7 +136,9 @@ class _HomePageState extends State<HomePage> {
                     decoration: InputDecoration(
                       labelText: 'Shared Call ID (Room ID)',
                       hintText: 'Both users enter the same ID',
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -143,11 +148,19 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.video_call),
                     label: const Text('Join'),
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white, 
+                      foregroundColor: Colors.white,
                       backgroundColor: Colors.teal,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 16,
+                      ),
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                 ],
@@ -166,11 +179,8 @@ class CallPage extends StatelessWidget {
   final String userID;
   final String userName;
 
-  const CallPage({
-    super.key,
-    required this.callID,
-    required this.userID,
-  }) : userName = 'user_$userID'; // Generate a username from the userID
+  const CallPage({super.key, required this.callID, required this.userID})
+    : userName = 'user_$userID'; // Generate a username from the userID
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +191,7 @@ class CallPage extends StatelessWidget {
       userName: userName,
       callID: callID,
       config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall(),
-    
+
       // Configure the call for a 1-on-1 video call.
       // config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
       //   ..onOnlySelfInRoom = (context) {
@@ -192,5 +202,3 @@ class CallPage extends StatelessWidget {
     );
   }
 }
-
-
