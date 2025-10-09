@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-
-// --- Step 1: Replace with your credentials from Zego Cloud Console ---
-// Get your AppID and AppSign from ZegoCloud Console
-// 1. Go to https://console.zegocloud.com/
-// 2. Create a project, then you can find your AppID and AppSign.
-// For the AppSign, you can use your Server Secret.
-const int appID = 1215738257; // <<< YOUR_APP_ID
+const int appID = 1215738257; 
 const String appSign =
     '0d1f6a260cccf266b337f4f46daf676b0d65eba5bd53e73f4c9f59958ac6df56'; // <<< YOUR_APP_SIGN (or Server Secret)
 
@@ -25,10 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(useMaterial3: true),
       home: const HomePage(),
     );
-  }
-}
-
-// HomePage: The screen where users enter their details to join a call.
+  
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -43,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Pre-fill user ID for easier testing. In a real app, this would be the logged-in user's ID.
+
     userIdController.text = 'user_${DateTime.now().millisecondsSinceEpoch}';
   }
 
