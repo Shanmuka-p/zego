@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '1-on-1 Tutoring App',
+      title: 'Video Call',
       theme: ThemeData.dark(useMaterial3: true),
       home: const HomePage(),
     );
